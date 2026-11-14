@@ -63,6 +63,9 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_$projectName"}
 	}
+
+	var mod_version = "${project.version}+${project.property("minecraft_version")}"
+	setArchiveVersion(mod_version)
 }
 
 // configure the maven publication
