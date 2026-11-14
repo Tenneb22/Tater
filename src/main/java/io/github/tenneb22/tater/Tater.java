@@ -1,5 +1,6 @@
 package io.github.tenneb22.tater;
 
+import io.github.tenneb22.tater.block.ModBlocks;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.resources.Identifier;
@@ -22,6 +23,8 @@ public class Tater implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+
+		ModBlocks.initialize();
 	}
 
 	public static Identifier id(String path) {
