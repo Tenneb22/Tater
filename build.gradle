@@ -28,11 +28,17 @@ dependencies {
 }
 
 processResources {
-	def version = project.version
-	inputs.property "version", version
+	def bindProps = [
+			"version" : "${version}+${minecraft_version}",
+			"minecraft_version": minecraft_version,
+			"loader_version": loader_version,
+			"fabric_api_version": fabric_api_version
+	]
+
+	inputs.properties(bindProps)
 
 	filesMatching("fabric.mod.json") {
-		expand "version": version
+		expand bindProps
 	}
 }
 
