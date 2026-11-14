@@ -3,13 +3,12 @@
 	"id": "tater",
 	"version": "${version}",
 	"name": "Tater",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Adds an (un)friendly Tater into your world :>",
 	"authors": [
-		"Me!"
+		"Tenneb22"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Tenneb22/Tater"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/tater/icon.png",
