@@ -6,13 +6,11 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,16 +32,21 @@ public class Tater extends TamableAnimal {
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20)
-                .add(Attributes.MOVEMENT_SPEED, 0.3);
+                .add(Attributes.MOVEMENT_SPEED, 0.3)
+                .add(Attributes.ATTACK_DAMAGE, 2);
     }
 
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(1, new PanicGoal(this, 1.5));
-        goalSelector.addGoal(2, new FollowOwnerGoal(this, 1, 10, 2.5f));
-        goalSelector.addGoal(3, new RandomStrollGoal(this, 0.6));
-        goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.5, true));
+        goalSelector.addGoal(2, new PanicGoal(this, 1.5));
+        goalSelector.addGoal(3, new FollowOwnerGoal(this, 1, 10, 2.5f));
+        goalSelector.addGoal(4, new RandomStrollGoal(this, 0.6));
+        goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+
+        targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Tater.class, true, this::canAttack));
+        targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true, this::canAttack));
     }
 
     @Override
@@ -114,6 +117,10 @@ public class Tater extends TamableAnimal {
     @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob partner) {
         return null;
+    }
+
+    private boolean canAttack(LivingEntity target, ServerLevel level) {
+        return isAngry();
     }
 
     public boolean isAngry() {
