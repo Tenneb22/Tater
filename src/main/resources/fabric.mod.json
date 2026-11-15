@@ -15,7 +15,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"io.github.tenneb22.tater.Tater"
+          "io.github.tenneb22.tater.TaterMod"
 		],
 		"client": [
 			"io.github.tenneb22.tater.client.TaterClient"
