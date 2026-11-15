@@ -14,7 +14,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 public class ModEntityTypes {
     public static final EntityType<Tater> TATER = register(
             ModEntityTypeIds.TATER,
-            EntityType.Builder.of(Tater::new, MobCategory.CREATURE),
+            EntityType.Builder.of(Tater::new, MobCategory.CREATURE)
+                    .sized(0.5f, 0.75f),
             Tater.createAttributes()
     );
 
