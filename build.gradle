@@ -14,6 +14,11 @@ repositories {
 		name = "Terraformers"
 		url = "https://maven.terraformersmc.com/"
 	}
+
+	// MidnightLib
+	maven {
+		url = "https://maven.midnightdust.eu/releases"
+	}
 }
 
 fabricApi {
@@ -34,6 +39,9 @@ dependencies {
 
 	// Mod Menu
 	runtimeOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
+
+	// MidnightLib
+	implementation include ("eu.midnightdust:midnightlib:${project.midnightlib_version}")
 }
 
 processResources {
