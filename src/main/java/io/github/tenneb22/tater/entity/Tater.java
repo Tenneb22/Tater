@@ -1,5 +1,8 @@
 package io.github.tenneb22.tater.entity;
 
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -15,9 +18,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.Nullable;
 
 public class Tater extends TamableAnimal {
+    private static final EntityDataAccessor<Boolean> IS_ANGRY = SynchedEntityData.defineId(Tater.class, EntityDataSerializers.BOOLEAN);
+    private static final String TAG_IS_ANGRY = "isAngry";
     private static final Item FOOD = Items.POTATO;
 
     protected Tater(EntityType<? extends TamableAnimal> type, Level level) {
@@ -82,6 +89,24 @@ public class Tater extends TamableAnimal {
     }
 
     @Override
+    protected void defineSynchedData(SynchedEntityData.Builder entityData) {
+        super.defineSynchedData(entityData);
+        entityData.define(IS_ANGRY, false);
+    }
+
+    @Override
+    protected void addAdditionalSaveData(ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        output.putBoolean(TAG_IS_ANGRY, isAngry());
+    }
+
+    @Override
+    protected void readAdditionalSaveData(ValueInput input) {
+        super.readAdditionalSaveData(input);
+        setAngry(input.getBooleanOr(TAG_IS_ANGRY, false));
+    }
+
+    @Override
     public boolean isFood(ItemStack itemStack) {
         return itemStack.is(FOOD);
     }
@@ -89,5 +114,13 @@ public class Tater extends TamableAnimal {
     @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob partner) {
         return null;
+    }
+
+    public boolean isAngry() {
+        return entityData.get(IS_ANGRY);
+    }
+
+    public void setAngry(boolean angry) {
+        entityData.set(IS_ANGRY, angry);
     }
 }
