@@ -25,7 +25,7 @@ import org.jspecify.annotations.Nullable;
 public class Tater extends TamableAnimal {
     private static final EntityDataAccessor<Boolean> IS_ANGRY = SynchedEntityData.defineId(Tater.class, EntityDataSerializers.BOOLEAN);
     private static final String TAG_IS_ANGRY = "isAngry";
-    private static final Item FOOD = Items.POTATO;
+    public static final Item FOOD = Items.POTATO;
 
     protected Tater(EntityType<? extends TamableAnimal> type, Level level) {
         super(type, level);
