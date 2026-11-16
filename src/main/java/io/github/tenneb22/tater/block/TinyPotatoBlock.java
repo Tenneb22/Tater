@@ -1,5 +1,6 @@
 package io.github.tenneb22.tater.block;
 
+import io.github.tenneb22.tater.ModConfig;
 import io.github.tenneb22.tater.entity.ModEntityTypes;
 import io.github.tenneb22.tater.entity.Tater;
 import net.minecraft.core.BlockPos;
@@ -11,7 +12,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -42,7 +42,7 @@ public class TinyPotatoBlock extends Block {
         Tater tater = ModEntityTypes.TATER.create(level, EntitySpawnReason.TRIGGERED);
         if (tater != null) {
             // random chance for tater to get angry
-            if (tater.getRandom().nextInt(5) == 0) {
+            if (ModConfig.angryTaterSpawnChance != 0 && tater.getRandom().nextInt(100 / ModConfig.angryTaterSpawnChance) == 0) {
                 tater.setAngry(true);
                 serverLevel.sendParticles(ParticleTypes.ANGRY_VILLAGER, pos.getX(), pos.getY(), pos.getZ(), 40, 1, 1, 1, 1);
             } else {

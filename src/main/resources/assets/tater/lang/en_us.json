@@ -1,5 +1,8 @@
 {
   "block.tater.tiny_potato": "Tiny Potato",
 
-  "entity.tater.tater": "Tater"
+  "entity.tater.tater": "Tater",
+
+  "tater.midnightconfig.title": "Tater Config",
+  "tater.midnightconfig.angryTaterSpawnChance": "Angry Tater Spawn Percentage Chance"
 }

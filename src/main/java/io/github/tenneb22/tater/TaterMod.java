@@ -1,5 +1,6 @@
 package io.github.tenneb22.tater;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import io.github.tenneb22.tater.block.ModBlocks;
 import io.github.tenneb22.tater.entity.ModEntityTypes;
 import net.fabricmc.api.ModInitializer;
@@ -24,6 +25,8 @@ public class TaterMod implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+
+		MidnightConfig.register(MOD_ID, ModConfig.class);
 
 		ModBlocks.initialize();
 		ModEntityTypes.initialize();
