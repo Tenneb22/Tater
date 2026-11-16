@@ -8,5 +8,6 @@ public class TaterDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(TaterModelProvider::new);
+		pack.addProvider(TaterRecipeProvider::new);
 	}
 }

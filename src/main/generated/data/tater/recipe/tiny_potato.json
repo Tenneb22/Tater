@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "p": "minecraft:potato"
+  },
+  "pattern": [
+    "pp",
+    "pp"
+  ],
+  "result": {
+    "id": "tater:tiny_potato"
+  }
+}
