@@ -32,6 +32,7 @@ public class TaterRenderer extends MobRenderer<Tater, TaterRenderState, TaterMod
     @Override
     public void extractRenderState(Tater entity, TaterRenderState state, float partialTicks) {
         super.extractRenderState(entity, state, partialTicks);
+        state.useKnifeAnimationState.copyFrom(entity.getUseKnifeAnimationState());
         state.isAngry = entity.isAngry();
     }
 }

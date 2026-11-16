@@ -1,14 +1,19 @@
 package io.github.tenneb22.tater.client.model;
 
+import io.github.tenneb22.tater.client.render.animation.TaterAnimations;
 import io.github.tenneb22.tater.client.render.state.TaterRenderState;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
 public class TaterKnifeModel extends EntityModel<TaterRenderState> {
+    private final KeyframeAnimation useKnifeAnimation;
+
     public TaterKnifeModel(ModelPart root) {
         super(root);
+        this.useKnifeAnimation = TaterAnimations.USE_KNIFE.bake(root);
     }
 
     public static LayerDefinition getTexturedModelData() {
@@ -24,4 +29,12 @@ public class TaterKnifeModel extends EntityModel<TaterRenderState> {
         return LayerDefinition.create(meshdefinition, 16, 16);
     }
 
+    @Override
+    public void setupAnim(TaterRenderState state) {
+        super.setupAnim(state);
+
+        if (state.useKnifeAnimationState.isStarted()) {
+            useKnifeAnimation.apply(state.useKnifeAnimationState, state.ageInTicks);
+        }
+    }
 }

@@ -24,6 +24,9 @@ public class Tater extends TamableAnimal {
     private static final EntityDataAccessor<Boolean> IS_ANGRY = SynchedEntityData.defineId(Tater.class, EntityDataSerializers.BOOLEAN);
     private static final String TAG_IS_ANGRY = "isAngry";
     public static final Item FOOD = Items.POTATO;
+    private static final byte USE_KNIFE_ENTITY_EVENT = (byte) 67676767;
+
+    private final AnimationState useKnifeAnimationState = new AnimationState();
 
     protected Tater(EntityType<? extends TamableAnimal> type, Level level) {
         super(type, level);
@@ -119,6 +122,23 @@ public class Tater extends TamableAnimal {
         return null;
     }
 
+    @Override
+    public void swingForAttack(InteractionHand hand) {
+        super.swingForAttack(hand);
+
+        // tell clients to start use knife animation
+        level().broadcastEntityEvent(this, USE_KNIFE_ENTITY_EVENT);
+    }
+
+    @Override
+    public void handleEntityEvent(@EntityEvent.Value byte id) {
+        if (id == USE_KNIFE_ENTITY_EVENT) {
+            useKnifeAnimationState.start(tickCount);
+        } else {
+            super.handleEntityEvent(id);
+        }
+    }
+
     private boolean canAttack(LivingEntity target, ServerLevel level) {
         return isAngry();
     }
@@ -129,5 +149,9 @@ public class Tater extends TamableAnimal {
 
     public void setAngry(boolean angry) {
         entityData.set(IS_ANGRY, angry);
+    }
+
+    public AnimationState getUseKnifeAnimationState() {
+        return useKnifeAnimationState;
     }
 }
