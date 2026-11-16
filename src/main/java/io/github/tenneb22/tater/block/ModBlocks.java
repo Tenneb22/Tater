@@ -25,13 +25,17 @@ public class ModBlocks {
                     .sound(SoundType.CROP)
     );
 
-    private static Block register(BlockItemId id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
+    private static Block registerWithItem(BlockItemId id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
         Block block = register(id.block(), factory, properties);
 
         BlockItem blockItem = new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item()));
         Registry.register(BuiltInRegistries.ITEM, id.item(), blockItem);
 
         return block;
+    }
+
+    private static Block register(BlockItemId id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
+        return register(id.block(), factory, properties);
     }
 
     private static Block register(ResourceKey<Block> id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {

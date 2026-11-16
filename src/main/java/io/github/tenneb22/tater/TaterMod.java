@@ -3,6 +3,7 @@ package io.github.tenneb22.tater;
 import eu.midnightdust.lib.config.MidnightConfig;
 import io.github.tenneb22.tater.block.ModBlocks;
 import io.github.tenneb22.tater.entity.ModEntityTypes;
+import io.github.tenneb22.tater.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.resources.Identifier;
@@ -29,6 +30,7 @@ public class TaterMod implements ModInitializer {
 		MidnightConfig.register(MOD_ID, ModConfig.class);
 
 		ModBlocks.initialize();
+		ModItems.initialize();
 		ModEntityTypes.initialize();
 	}
 
