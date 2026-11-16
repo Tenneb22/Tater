@@ -7,7 +7,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
 public class TaterKnifeModel extends EntityModel<TaterRenderState> {
-    protected TaterKnifeModel(ModelPart root) {
+    public TaterKnifeModel(ModelPart root) {
         super(root);
     }
 

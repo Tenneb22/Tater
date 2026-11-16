@@ -3,6 +3,7 @@ package io.github.tenneb22.tater.client.render;
 import io.github.tenneb22.tater.TaterMod;
 import io.github.tenneb22.tater.client.model.ModModelLayers;
 import io.github.tenneb22.tater.client.model.TaterModel;
+import io.github.tenneb22.tater.client.render.layer.TaterKnifeLayer;
 import io.github.tenneb22.tater.client.render.state.TaterRenderState;
 import io.github.tenneb22.tater.entity.Tater;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -15,6 +16,7 @@ public class TaterRenderer extends MobRenderer<Tater, TaterRenderState, TaterMod
 
     public TaterRenderer(EntityRendererProvider.Context context) {
         super(context, new TaterModel(context.bakeLayer(ModModelLayers.TATER)), 0.5f);
+        addLayer(new TaterKnifeLayer(this, context.getModelSet()));
     }
 
     @Override
