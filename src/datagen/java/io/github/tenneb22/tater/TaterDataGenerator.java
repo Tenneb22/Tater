@@ -7,6 +7,7 @@ public class TaterDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+		pack.addProvider(TaterBlockLootTableProvider::new);
 		pack.addProvider(TaterModelProvider::new);
 		pack.addProvider(TaterRecipeProvider::new);
 	}
