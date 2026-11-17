@@ -4,5 +4,6 @@
   "entity.tater.tater": "Tater",
 
   "tater.midnightconfig.title": "Tater Config",
-  "tater.midnightconfig.angryTaterSpawnChance": "Angry Tater Spawn Percentage Chance"
+  "tater.midnightconfig.angryTaterSpawnChance": "Angry Tater Spawn Percentage Chance",
+  "tater.midnightconfig.renderTaterKnife": "Render Tater Knife"
 }

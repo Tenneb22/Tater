@@ -5,4 +5,7 @@ import eu.midnightdust.lib.config.MidnightConfig;
 public class ModConfig extends MidnightConfig {
     @Entry(isSlider = true, min = 0, max = 100)
     public static int angryTaterSpawnChance = 20;
+
+    @Entry
+    public static boolean renderTaterKnife = true;
 }

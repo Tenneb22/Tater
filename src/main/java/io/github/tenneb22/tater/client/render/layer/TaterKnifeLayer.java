@@ -1,6 +1,7 @@
 package io.github.tenneb22.tater.client.render.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import io.github.tenneb22.tater.ModConfig;
 import io.github.tenneb22.tater.TaterMod;
 import io.github.tenneb22.tater.client.model.ModModelLayers;
 import io.github.tenneb22.tater.client.model.TaterKnifeModel;
@@ -25,7 +26,7 @@ public class TaterKnifeLayer extends RenderLayer<TaterRenderState, TaterModel> {
 
     @Override
     public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int lightCoords, TaterRenderState state, float yRot, float xRot) {
-        if (!state.isAngry) return;
+        if (!state.isAngry || !ModConfig.renderTaterKnife) return;
 
         poseStack.pushPose();
         poseStack.translate(-0.4, -0.25, 0);
