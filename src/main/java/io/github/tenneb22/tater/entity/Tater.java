@@ -74,7 +74,7 @@ public class Tater extends TamableAnimal {
             }
         }
 
-        else if (isFood(itemStack) && !level().isClientSide()) {
+        else if (!isAngry() && isFood(itemStack) && !level().isClientSide()) {
             itemStack.consume(1, player);
             playEatingSound();
             tryToTame(player);
@@ -115,6 +115,11 @@ public class Tater extends TamableAnimal {
     @Override
     public boolean isFood(ItemStack itemStack) {
         return itemStack.is(FOOD);
+    }
+
+    @Override
+    public boolean canFallInLove() {
+        return !isAngry() && super.canFallInLove();
     }
 
     @Override
