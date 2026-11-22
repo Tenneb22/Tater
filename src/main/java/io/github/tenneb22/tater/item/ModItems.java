@@ -1,15 +1,18 @@
 package io.github.tenneb22.tater.item;
 
+import io.github.tenneb22.tater.TaterMod;
 import io.github.tenneb22.tater.block.ModBlocks;
 import io.github.tenneb22.tater.entity.ModEntityTypes;
 import io.github.tenneb22.tater.id.ModBlockItemIds;
 import io.github.tenneb22.tater.id.ModItemIds;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.Block;
@@ -46,5 +49,11 @@ public class ModItems {
     }
 
     public static void initialize() {
+        // all mod items are automatically registered in a separate creative tab
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.SPAWN_EGGS)
+                .register(tab -> {
+                    tab.accept(ModItems.TATER_SPAWN_EGG);
+                });
     }
 }
